@@ -12,14 +12,22 @@ public class LoginPage {
     @FindBy(xpath = "//*[contains(text(),'Account')]")
     WebElement accountIcon;
 
-    @FindBy(css = "#password")
+    @FindBy(id = "txt-email")
+    WebElement usernameTextBox;
+
+    @FindBy(id = "txt-password")
     WebElement passwordTextBox;
 
-    @FindBy(xpath = "//input[@type=\"submit\"]")
+    @FindBy(xpath = "//button[contains(text(),\"Login\")]")
     WebElement loginButton;
 
-    @FindBy(css = "h3[data-test=\"error\"]")
+    @FindBy(xpath = "//span[@class=\"text-danger\"]")
     WebElement invalidLoginErrorText;
+
+    @FindBy(xpath = "//h5[@class=\"mb-0\"]")
+    WebElement acknowledgeText;
+
+
 
     //constructor to initialize driver
     public LoginPage(WebDriver driver) {
@@ -28,13 +36,17 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
         wait=new WaitUtil(driver);
     }
+    //Click account icon
+    public void clickAccountIcon(){
+        accountIcon.click();
+    }
 
     //Enter username
-    //public void setUserName(String strUserName) {
-     //   usernameTextBox.sendKeys(strUserName);
+    public void setUserName(String strUserName) {
+        usernameTextBox.sendKeys(strUserName);
 
     }
-/*
+
     //Enter password
     public void setPassword(String strPassword) {
         passwordTextBox.sendKeys(strPassword);
@@ -53,6 +65,9 @@ public class LoginPage {
     //Get error test
     public String getInvalidLoginErrorText() {
         return invalidLoginErrorText.getText();
+    }
+    public String getAcknowledgeText() {
+        return acknowledgeText.getText();
     }
 
     public String getLoginBtnText() {

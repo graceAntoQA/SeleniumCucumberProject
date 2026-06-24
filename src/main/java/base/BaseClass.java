@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.testng.asserts.SoftAssert;
 import pages.LoginPage;
 import utilities.PropertyUtil;
 
@@ -13,6 +14,7 @@ import java.time.Duration;
 
 public class BaseClass {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    //SoftAssert softAssert=new SoftAssert();
 
     public static WebDriver getDriver() {
         return driver.get();
