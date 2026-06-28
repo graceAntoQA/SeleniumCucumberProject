@@ -33,18 +33,18 @@ public class BaseClass {
         switch (browser.toLowerCase()) {
             case "chrome": {
                 ChromeOptions options = new ChromeOptions();
-                // options.addArguments("--headless=new");          // modern headless for Chromium
-                //options.addArguments("--no-sandbox");            // useful in CI/Linux
-                // options.addArguments("--disable-dev-shm-usage"); // avoid shared memory issues
-                // driver = new ChromeDriver(options);
+                 options.addArguments("--headless=new");          // modern headless for Chromium
+                options.addArguments("--no-sandbox");            // useful in CI/Linux
+                 options.addArguments("--disable-dev-shm-usage"); // avoid shared memory issues
+              //   driver = new ChromeDriver(options);
                 driver.set(new ChromeDriver(options));
                 break;
             }
             case "edge": {
                 EdgeOptions options = new EdgeOptions();
-                // options.addArguments("--headless=new");          // modern headless for edge
-                //options.addArguments("--no-sandbox");            // useful in CI/Linux
-                // options.addArguments("--disable-dev-shm-usage"); // avoid shared memory issues
+                 options.addArguments("--headless=new");          // modern headless for edge
+                options.addArguments("--no-sandbox");            // useful in CI/Linux
+                 options.addArguments("--disable-dev-shm-usage"); // avoid shared memory issues
                 // driver = new ChromeDriver(options);
                 driver.set(new EdgeDriver(options));
 

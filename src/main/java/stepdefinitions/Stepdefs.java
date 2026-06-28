@@ -39,6 +39,7 @@ public class Stepdefs extends BaseClass {
 
     @When("User enters {string} and {string}")
     public void userEntersAnd(String username, String password) throws InterruptedException {
+        Thread.sleep(2000);
         loginpage.clickAccountIcon();
         String urlLogin= getDriver().getCurrentUrl();
         softAssert.assertEquals(urlLogin,"https://ecom.gotechmasters.com/login");
