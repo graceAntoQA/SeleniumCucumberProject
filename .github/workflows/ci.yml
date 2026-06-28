@@ -1,26 +1,23 @@
-name: Selenium Tests CI
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-      - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
-      - name: Install ChromeDriver
-        run: |
-          sudo apt-get install -y chromium-chromedriver
-      - name: Run Tests
-        run: mvn clean test
+image: maven:3.9.6-eclipse-temurin-17
+stages:
+  - build
+  - test
+  - package
+cache:
+  paths:
+    - .m2/repository
+build:
+  stage: build
+  script:
+    - mvn clean compile
+test:
+  stage: test
+  script:
+    - mvn test
+package:
+  stage: package
+  script:
+    - mvn package -DskipTests
+  artifacts:
+    paths:
+      - target/*.jar
