@@ -24,6 +24,15 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: maven
+      - name: Show project structure
+        run: |
+          pwd
+          find src -type f
+
+      - name: List compiled test classes
+        run: |
+          mvn test-compile
+          find target/test-classes -type f
 
       - name: Verify Maven
         run: mvn -version
@@ -32,7 +41,7 @@ jobs:
         run: mvn clean compile
 
       - name: Execute Tests
-        run: mvn test
+        run: mvn clean test
 
       - name: Upload Test Reports
         if: always()
