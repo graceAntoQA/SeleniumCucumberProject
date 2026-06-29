@@ -20,7 +20,7 @@ public class BaseClass {
         return driver.get();
     }
 
-    //public LoginPage loginPage;
+
 
     public static void initDriver(String browser) throws IOException {
         if (browser == null || browser.isBlank()) {
@@ -47,9 +47,13 @@ public class BaseClass {
                  options.addArguments("--disable-dev-shm-usage"); // avoid shared memory issues
                 // driver = new ChromeDriver(options);
                 driver.set(new EdgeDriver(options));
+                break;
 
 
             }
+            default:
+                throw new IllegalArgumentException(
+                        "Unsupported browser: " + browser);
 
         }
         WebDriver d = getDriver();
